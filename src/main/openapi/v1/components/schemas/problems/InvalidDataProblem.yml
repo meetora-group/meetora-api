@@ -1,0 +1,9 @@
+x-all-of-name: InvalidDataProblem
+description: The request is invalid and cannot be processed. Typical payload 400 Bad Request Code
+allOf:
+  - $ref: "BadRequestProblem.yml"
+  - type: object
+    properties:
+      validationFailures:
+        type: object
+        additionalProperties: true

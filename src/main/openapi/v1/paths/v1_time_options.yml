@@ -1,0 +1,101 @@
+get:
+  operationId: getTimeOptionsV1
+  summary: Retrieve available time slot options
+  description: Retrieves the active time slot options grouped by hour and labels.
+  responses:
+    '200':
+      description: A list of active time slot options.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../components/schemas/TimeSlotResponse.yml'
+    '400':
+      description: Invalid input provided
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/BadRequestProblem.yml'
+    '401':
+      description: Unauthorized access
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/UnauthorizedProblem.yml'
+    '403':
+      description: Forbidden access
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/ForbiddenProblem.yml'
+    '404':
+      description: Not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/NotFoundProblem.yml'
+    '500':
+      description: Internal server error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/GeneralProblem.yml'
+  tags:
+    - TimeOptionsV1
+  security:
+    - meetoraOAuth: [ ]
+
+post:
+  operationId: createTimeOptionV1
+  summary: Create a new time slot option group
+  description: Creates one or more labels for a specific hour.
+  requestBody:
+    description: The hour and the labels to associate with it.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/CreateTimeSlotOptionRequest.yml'
+  responses:
+    '201':
+      description: Time slot option successfully created.
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/TimeSlotResponse.yml'
+    '400':
+      description: Invalid input provided
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/BadRequestProblem.yml'
+    '401':
+      description: Unauthorized access
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/UnauthorizedProblem.yml'
+    '403':
+      description: Forbidden access
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/ForbiddenProblem.yml'
+    '404':
+      description: Not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/NotFoundProblem.yml'
+    '500':
+      description: Internal server error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/problems/GeneralProblem.yml'
+  tags:
+    - TimeOptionsV1
+  security:
+    - meetoraOAuth: [ ]
+

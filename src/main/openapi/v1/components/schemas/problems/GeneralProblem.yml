@@ -1,0 +1,61 @@
+type: object
+description: A general problem that can be used as base for more specific problems.
+required: [ 'oasDiscriminator', 'type', 'errorId', 'title', 'status', 'detail', 'severity', 'timestamp' ]
+discriminator:
+  propertyName: oasDiscriminator
+properties:
+  oasDiscriminator:
+    type: string
+    minLength: 8
+    description: Used internally by the generator and the generated code to implement inheritance. MUST be the same as the assumed type.
+    example: GeneralProblem
+  type:
+    type: string
+    format: uri
+    minLength: 4
+    default: 'about:blank'
+    description: Unique identifier of the error. The change to it, is considered a breaking change in the API
+    example: 'urn:problem-type:not-entitled-for-payment-method'
+  errorId:
+    type: string
+    description: Error ID as described on...
+    minLength: 1
+    example: err-ORT-UN-01
+  title:
+    type: string
+    description: Minimalistic and short description of the error to get the idea of the context.
+    minLength: 5
+    example: You're not entitle to use this method of payment
+  status:
+    type: integer
+    description: HTTP status code
+    minimum: 400
+    maximum: 599
+    example: 400
+    default: 500
+  detail:
+    type: string
+    description: A human readable and localized error message shown to the user.
+    minLength: 1
+    example: Customer 123 has only GOLD status but needs PLATINUM to be entitled to order
+  severity:
+    $ref: "../../schemas/Severity.yml"
+  traceId:
+    type: string
+    description: Trace ID to be able to find relevant log entries
+    example: 123e4567-e89b-12d3-a456-426614234000
+  timestamp:
+    type: string
+    format: date-time
+    minLength: 20
+    example: 2026-04-02T12:12:12.999Z
+example:
+  oasDiscriminator: GeneralProblem
+  type: 'urn:problem-type:not-entitled-for-payment-method'
+  errorId: err-ORT-UN-01
+  title: You're not entitle to use this method of payment
+  status: 400
+  detail:  Customer 123 has only GOLD status but needs PLATINUM to be entitled to order
+  severity: Critical
+  traceId: 123e4567-e89b-12d3-a456-426614234000
+  timestamp: 2026-04-02T12:12:12.999Z

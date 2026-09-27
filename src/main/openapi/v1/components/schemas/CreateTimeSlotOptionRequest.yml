@@ -1,0 +1,16 @@
+type: object
+properties:
+  hour:
+    type: integer
+    example: 19
+  labels:
+    type: array
+    items:
+      type: string
+    example:
+      - "private dinner"
+      - "board games"
+required:
+  - hour
+  - labels
+

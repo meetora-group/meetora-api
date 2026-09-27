@@ -1,0 +1,15 @@
+extends:
+  - recommend-strict
+  - recommended
+rules:
+  spec: error
+  operation-description: warn
+  response-contains-header:
+    severity: error
+    names:
+      '201':
+        - Location
+  paths-kebab-case: warn
+  tags-alphabetical: error
+  parameter-description: warn
+  operation-singular-tag: error

@@ -1,0 +1,22 @@
+x-all-of-name: ForbiddenProblem
+description: >
+  The client is authenticated but cannot execute the operation.
+  Typical payload for the 403 Forbidden status code.
+allOf:
+  - $ref: "GeneralProblem.yml"
+  - type: object
+    properties:
+      type:
+        type: string
+        format: uri
+        minLength: 4
+        default: 'err-forbidden'
+        example: 'err-forbidden'
+      status:
+        type: integer
+        description: HTTP status code
+        default: 403
+        example: 403
+    required:
+      - type
+      - status

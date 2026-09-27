@@ -1,0 +1,20 @@
+x-all-of-name: BadRequestProblem
+description: The request is invalid and cannot be processed. Typical payload 400 Bad Request Code
+allOf:
+  - $ref: "GeneralProblem.yml"
+  - type: object
+    properties:
+      type:
+        type: string
+        format: uri
+        minLength: 4
+        default: 'err-bad-request'
+        example: 'err-bad-request'
+      status:
+        type: integer
+        description: HTTP status code
+        default: 400
+        example: 400
+    required:
+      - type
+      - status

@@ -1,0 +1,17 @@
+type: object
+properties:
+  scheduledTime:
+    type: string
+    format: date-time
+    example: "2026-08-15T19:00:00Z"
+  label:
+    type: string
+    example: "19h - late dinner"
+  recipientEmail:
+    type: string
+    format: email
+    example: "target@example.com"
+required:
+  - scheduledTime
+  - label
+  - recipientEmail

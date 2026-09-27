@@ -1,0 +1,48 @@
+post:
+  operationId: scheduleDateV1
+  summary: Submit a scheduled date invitation
+  description: Creates a new invitation with the provided details.
+  requestBody:
+    description: The details of the invitation to create
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/DateInvitationCreateRequest.yml"
+  responses:
+    '201':
+      description: Invitation successfully created
+      headers:
+        Location:
+          description: The URI of the newly created date resource
+          schema:
+            type: string
+            format: uri
+    '400':
+      description: Invalid input provided
+      content:
+        application/problem+json:
+          schema:
+            $ref: "../components/schemas/problems/BadRequestProblem.yml"
+    '401':
+      description: Unauthorized access
+      content:
+        application/problem+json:
+          schema:
+            $ref: "../components/schemas/problems/UnauthorizedProblem.yml"
+    '403':
+      description: Forbidden access
+      content:
+        application/problem+json:
+          schema:
+            $ref: "../components/schemas/problems/ForbiddenProblem.yml"
+    '500':
+      description: Internal server error
+      content:
+        application/problem+json:
+          schema:
+            $ref: "../components/schemas/problems/GeneralProblem.yml"
+  tags:
+    - DateInvitationV1
+  security:
+    - meetoraOAuth: [ ]

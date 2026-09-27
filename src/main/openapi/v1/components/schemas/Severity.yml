@@ -1,0 +1,16 @@
+type: string
+enum:
+  - Critical
+  - High
+  - Moderate
+  - Low
+minLength: 3
+default: Critical
+description: >
+  Describes how prominent will frontend show the error
+  
+  Severity of the problem:
+    * `Critical` - error blocking the entire system operation.
+    * `High` - affects the main functions of the application, without which it's operation is impossible and the application behaves completely differently from what it is specified in it's requirements.
+    * `Moderate` - affects secondary functions of the application which then behave differently than specified in the requirements.
+    * `Low` - have no significant influence on the functionality or can be easily worked around.

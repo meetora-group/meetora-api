@@ -1,0 +1,19 @@
+x-all-of-name: NotFoundProblem
+description: The requested source cannot be found. Typical payload 404 Not Found Code
+allOf:
+  - $ref: "GeneralProblem.yml"
+  - type: object
+    properties:
+      type:
+        type: string
+        format: uri
+        minLength: 4
+        default: 'err-not-found'
+        example: 'err-not-found'
+      status:
+        type: integer
+        default: 404
+        example: 404
+    required:
+      - type
+      - status

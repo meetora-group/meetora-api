@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: Meetora API
+  version: 0.1.0
+  description: Formal contract for the Meetora date scheduling service.
+  license:
+    name: "@project.licenses[0].name@"
+servers:
+  - url: "http://{local-dev}"
+    variables:
+      local-dev:
+        default: "localhost:8080"
+    description: "Local development server"
+paths:
+  /v1/invitations:
+    $ref: v1/paths/v1_invitations.yml
+  /v1/time-options:
+    $ref: v1/paths/v1_time_options.yml
+
+components:
+  securitySchemes:
+    meetoraOAuth:
+      flows:
+        authorizationCode:
+          authorizationUrl: >-
+            http://localhost:8180/realms/meetora/auth
+          scopes: { }
+          tokenUrl: >-
+            http://localhost:8180/realms/meetora/token
+      type: oauth2
+
+  schemas:
+    GeneralProblem:
+      $ref: "v1/components/schemas/problems/GeneralProblem.yml"
+    NotFoundProblem:
+      $ref: "v1/components/schemas/problems/NotFoundProblem.yml"
+    ForbiddenProblem:
+      $ref: "v1/components/schemas/problems/ForbiddenProblem.yml"
+    UnauthorizedProblem:
+      $ref: "v1/components/schemas/problems/UnauthorizedProblem.yml"
+    BadRequestProblem:
+      $ref: "v1/components/schemas/problems/BadRequestProblem.yml"
+    InvalidDataProblem:
+      $ref: "v1/components/schemas/problems/InvalidDataProblem.yml"
+    TimeSlotResponse:
+      $ref: "v1/components/schemas/TimeSlotResponse.yml"
+    CreateTimeSlotOptionRequest:
+      $ref: "v1/components/schemas/CreateTimeSlotOptionRequest.yml"
+
+tags:
+  - name: DateInvitationV1
+    description: Date invitation management endpoints for the Meetora service.
+  - name: TimeOptionsV1
+    description: Time options endpoints for the Meetora service.
